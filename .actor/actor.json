@@ -2,7 +2,7 @@
 	"actorSpecification": 1,
 	"name": "dataset-to-chroma-python",
 	"title": "ChromaDB integration for Apify",
-	"description": "Get apify dataset, compute embeddings and save it to ChromaDB.",
+	"description": "Get apify dataset, compute embeddings and save it to a ChromaDB.",
 	"version": "0.0",
 	"meta": {
 		"templateId": "python-start"
