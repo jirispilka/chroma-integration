@@ -54,7 +54,6 @@ async def main():
 
         # Get the value of the actor input
         actor_input = await Actor.get_input() or {}
-        Actor.log.debug("Actor input %s", actor_input)
 
         chroma_coll_name = actor_input.get("chroma_collection_name")
         chroma_client_host = actor_input.get("chroma_client_host") or ""
