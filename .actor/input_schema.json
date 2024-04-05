@@ -39,7 +39,7 @@
         "fields": {
             "title": "Fields",
             "type": "array",
-            "description": "Select Dataset fields for embedding computation (supports dot notation)",
+            "description": "Specify Dataset fields for text extraction in this array, using dot notation. \n\nE.g., for a crawler's 'text' output field, simply add 'text' to the array.",
             "editor": "stringList"
         },
         "metadata_fields": {
@@ -78,8 +78,7 @@
             "title": "Dataset ID",
             "type": "string",
             "description": "Dataset ID (when running standalone without integration)",
-            "editor": "textfield",
-            "default": "wF66QEHf0frgaeShM"
+            "editor": "textfield"
         }
     },
     "required": ["chroma_client_host", "openai_api_key", "fields"]

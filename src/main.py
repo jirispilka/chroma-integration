@@ -1,7 +1,9 @@
 import os
 import sys
 
-# FIx for  RuntimeError: Your system has an unsupported version of sqlite3. Chroma requires sqlite3 >= 3.35.0.
+
+# Apify dockerfile is using Debian slim-buster image, which has an unsupported version of sqlite3.
+# FIx for RuntimeError: Your system has an unsupported version of sqlite3. Chroma requires sqlite3 >= 3.35.0.
 # References:
 #  https://docs.trychroma.com/troubleshooting#sqlite
 #  https://gist.github.com/defulmere/8b9695e415a44271061cc8e272f3c300
@@ -12,10 +14,10 @@ sys.modules["sqlite3"] = sys.modules.pop("pysqlite3")
 import chromadb
 from apify import Actor
 from langchain.docstore.document import Document
-from langchain.text_splitter import CharacterTextSplitter
 from langchain_community.vectorstores import Chroma
 from langchain_community.document_loaders import ApifyDatasetLoader
 from langchain_openai.embeddings import OpenAIEmbeddings
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 
 def get_nested_value(data: dict, keys: str):
@@ -101,9 +103,10 @@ async def main():
             documents = await try_except(loader.load, f"Failed to load documents for field {field}")
             Actor.log.debug("Document loaded")
 
-            # if perform_chunking:
-            text_splitter = CharacterTextSplitter(chunk_size=chunk_size, chunk_overlap=chunk_overlap)
-            documents = text_splitter.split_documents(documents)
+            if perform_chunking:
+                text_splitter = RecursiveCharacterTextSplitter(chunk_size=chunk_size, chunk_overlap=chunk_overlap)
+                documents = text_splitter.split_documents(documents)
+                Actor.log.debug("Documents chunked to %s chunks", len(documents))
 
             try:
                 Chroma.from_documents(
