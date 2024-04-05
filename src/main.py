@@ -1,4 +1,13 @@
 import os
+import sys
+
+# FIx for  RuntimeError: Your system has an unsupported version of sqlite3. Chroma requires sqlite3 >= 3.35.0.
+# References:
+#  https://docs.trychroma.com/troubleshooting#sqlite
+#  https://gist.github.com/defulmere/8b9695e415a44271061cc8e272f3c300
+# swap the stdlib sqlite3 lib with the pysqlite3 package
+__import__("pysqlite3")
+sys.modules["sqlite3"] = sys.modules.pop("pysqlite3")
 
 import chromadb
 from apify import Actor
@@ -59,8 +68,6 @@ async def main():
         chunk_size, chunk_overlap = actor_input.get("chunk_size"), actor_input.get("chunk_overlap")
 
         resource = actor_input.get("payload", {}).get("resource", {})
-
-        print(actor_input)
 
         if not (dataset_id := resource.get("defaultDatasetId") or actor_input.get("datasetId")):
             msg = "No Dataset ID provided. It should be provided either in payload or in actor_input"
