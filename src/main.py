@@ -7,12 +7,14 @@ import sys
 # References:
 #  https://docs.trychroma.com/troubleshooting#sqlite
 #  https://gist.github.com/defulmere/8b9695e415a44271061cc8e272f3c300
-# swap the stdlib sqlite3 lib with the pysqlite3 package
+#
+# pip install pysqlite3
+# swap the stdlib sqlite3 lib with the pysqlite3 package, before importing chromadb
 __import__("pysqlite3")
 sys.modules["sqlite3"] = sys.modules.pop("pysqlite3")
 
-import chromadb
 from apify import Actor
+import chromadb
 from langchain.docstore.document import Document
 from langchain_community.vectorstores import Chroma
 from langchain_community.document_loaders import ApifyDatasetLoader
@@ -60,6 +62,13 @@ async def main():
         chroma_client_port = actor_input.get("chroma_client_port")
         chroma_client_ssl = actor_input.get("chroma_client_ssl")
 
+        settings = None
+        if auth := actor_input.get("chroma_server_auth_credentials"):
+            settings = chromadb.config.Settings(
+                chroma_client_auth_credentials=auth,
+                chroma_client_auth_provider="chromadb.auth.token.TokenAuthClientProvider",
+            )
+
         os.environ["OPENAI_API_KEY"] = actor_input.get("openai_api_key") or ""
 
         fields = actor_input.get("fields") or []
@@ -76,7 +85,9 @@ async def main():
             await Actor.fail(status_message=msg)
 
         try:
-            chroma_client = chromadb.HttpClient(host=chroma_client_host, port=chroma_client_port, ssl=chroma_client_ssl)
+            chroma_client = chromadb.HttpClient(
+                host=chroma_client_host, port=chroma_client_port, ssl=chroma_client_ssl, settings=settings
+            )
             assert chroma_client.heartbeat() > 1
             Actor.log.debug("Connected to chroma")
         except Exception as e:

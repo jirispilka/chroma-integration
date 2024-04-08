@@ -29,6 +29,13 @@
             "type": "boolean",
             "default": false
         },
+        "chroma_server_auth_credentials": {
+            "title": "ChromaDB server auth Static API token credentials",
+            "description": "ChromaDB server Auth Static API token.",
+            "type": "string",
+            "editor": "textfield",
+            "isSecret": true
+        },
         "openai_api_key": {
             "title": "OpenAI API KEY",
             "description": "OpenAI API KEY",
