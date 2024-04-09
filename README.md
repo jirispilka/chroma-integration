@@ -2,6 +2,8 @@
 
 The Apify ChromaDB integration seamlessly transfers selected data from Apify Actors to a ChromaDB.
 
+Is there anything you find unclear or missing? Please don't hesitate to inform us by creating an issue.
+
 ⚠️ **Note**: This Actor is meant to be used together with other Actors' integration section.
 For instance, if you are using the [Website Content Crawler](https://apify.com/apify/website-content-crawler),
 you can enable ChromaDB integration to store vectors in ChromaDB.
