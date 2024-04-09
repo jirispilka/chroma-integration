@@ -88,5 +88,5 @@
             "editor": "textfield"
         }
     },
-    "required": ["chroma_client_host", "openai_api_key", "fields"]
+    "required": ["chroma_client_host", "openai_token", "fields"]
 }
