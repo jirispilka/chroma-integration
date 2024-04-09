@@ -6,10 +6,11 @@ The Apify ChromaDB integration seamlessly transfers selected data from Apify Act
 For instance, if you are using the [Website Content Crawler](https://apify.com/apify/website-content-crawler),
 you can enable ChromaDB integration to store vectors in ChromaDB.
 
-Apify ChromaDB integration computes OpenAI embeddings and store them in ChromaDB.
+Apify ChromaDB integration computes OpenAI embeddings and store them in ChromaDB. It uses [LangChain](https://www.langchain.com/)
+to interact with [OpenAI embeddings](https://platform.openai.com/docs/guides/embeddings) and [ChromaDB](https://www.trychroma.com/).
 
-For more information how to leverage vector stores them in Apify platform, see a similar Pinecone
-integration [what Pinecone is and why you should use it with your LLMs](https://blog.apify.com/what-is-pinecone-why-use-it-with-llms/).
+For more information how to leverage vector stores in Apify platform, see a similar [Pinecone
+integration](https://github.com/HonzaTuron/pinecone) and detailed blog post [what Pinecone is and why you should use it with your LLMs](https://blog.apify.com/what-is-pinecone-why-use-it-with-llms/).
 
 ## Description
 
