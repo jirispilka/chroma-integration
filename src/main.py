@@ -69,7 +69,7 @@ async def main():
                 chroma_client_auth_provider="chromadb.auth.token.TokenAuthClientProvider",
             )
 
-        os.environ["OPENAI_API_KEY"] = actor_input.get("openai_api_key") or ""
+        os.environ["OPENAI_API_KEY"] = actor_input.get("openai_token") or ""
 
         fields = actor_input.get("fields") or []
         metadata_fields = actor_input.get("metadata_fields") or {}

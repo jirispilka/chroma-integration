@@ -36,7 +36,7 @@
             "editor": "textfield",
             "isSecret": true
         },
-        "openai_api_key": {
+        "openai_token": {
             "title": "OpenAI API KEY",
             "description": "OpenAI API KEY",
             "type": "string",
