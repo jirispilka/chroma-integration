@@ -75,7 +75,7 @@ Forwarding                    https://fdfe-82-208-25-82.ngrok-free.app -> http:/
 ```
 
 
-## Input
+## Inputs
 
 For details refer to [input schema](.actor/input_schema.json).
 
@@ -94,7 +94,7 @@ For details refer to [input schema](.actor/input_schema.json).
 
 Fields `fields`, `metadata_values`, and `metadata_fields` supports dot notation. For example, if you want to push `name` field from `user` object, you should set `fields` to `["user.name"]`.
 
-## Output
+## Outputs
 
 This integration will save the selected fields from your Actor to your a ChromaDB.
 
