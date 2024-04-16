@@ -30,7 +30,7 @@ to interact with `OpenAI` and `ChromaDB`.
 
 To utilize this integration, ensure you have:
 
-- An OpenAI account and an Open API token. Create a free account at [OpenAI](https://beta.openai.com/).
+- An OpenAI account and an OpenAI API token. Create a free account at [OpenAI](https://beta.openai.com/).
 - `ChromaDB` operational on a server or localhost.
 
 For quick ChromaDB setup, refer to [ChromaDB deployment](https://docs.trychroma.com/deployment#docker).
