@@ -74,6 +74,9 @@ Account                       a@a.ai (Plan: Free)
 Forwarding                    https://fdfe-82-208-25-82.ngrok-free.app -> http://localhost:8000
 ```
 
+The URL (`https://fdfe-82-208-25-82.ngrok-free.app`) can be used in the as an input variable for `chroma_client_host`.
+Note that your specific URL will vary.
+
 
 ## Inputs
 
